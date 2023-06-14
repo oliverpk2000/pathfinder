@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pathfinder.pathfinder.PathfinderController">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane fx:id="grid" prefHeight="509.0" prefWidth="617.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,9 +27,51 @@
       </GridPane>
    </center>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="500.0" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Start" />
+            <Label text="add to grid:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="startRadioButton" mnemonicParsing="false" selected="true" text="start point">
+               <toggleGroup>
+                  <ToggleGroup fx:id="points" />
+               </toggleGroup>
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="endRadioButton" mnemonicParsing="false" text="end point" toggleGroup="$points">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </RadioButton>
+            <RadioButton fx:id="blockRadioButton" mnemonicParsing="false" text="block point" toggleGroup="$points">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="31.0" prefWidth="165.0" text="Start">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
