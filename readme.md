@@ -1,5 +1,6 @@
 # Pathfinder
-## Description
+
+## Description  
 
 Pathfinding visualiser written in JavaFx, implements A*.
 
@@ -10,3 +11,6 @@ https://www.baeldung.com/java-a-star-pathfinding
 
 general javafx docs used for design:  
 https://fxdocs.github.io/docs/html5/
+
+markup guide used for readme:  
+https://www.markdownguide.org/basic-syntax/
