@@ -1,5 +1,6 @@
 # Pathfinder
-## Description
+
+## Description  
 
 Pathfinding visualiser written in JavaFx, implements A*.
 
