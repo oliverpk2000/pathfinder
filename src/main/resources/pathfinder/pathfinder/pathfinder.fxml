@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pathfinder.pathfinder.PathfinderController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pathfinder.pathfinder.PathfinderController">
   <children>
-    <VBox prefHeight="600.0" prefWidth="150.0">
+    <VBox prefHeight="600.0" prefWidth="200.0">
       <children>
         <Label text="add to grid:">
           <font>
@@ -49,7 +49,7 @@
             <Insets left="25.0" />
           </VBox.margin>
         </RadioButton>
-        <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="31.0" prefWidth="165.0" text="Start">
+        <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="31.0" prefWidth="200.0" text="Start">
           <font>
             <Font size="15.0" />
           </font>
@@ -57,7 +57,12 @@
             <Insets top="10.0" />
           </VBox.margin>
         </Button>
-            <Label fx:id="errorMsg">
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="213.0" text="Reset">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label fx:id="errorMsg" alignment="TOP_LEFT" prefHeight="428.0" prefWidth="280.0">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

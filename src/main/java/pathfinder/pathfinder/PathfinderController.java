@@ -10,14 +10,17 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PathfinderController implements Initializable {
-
+  @FXML
   public Label errorMsg;
+  @FXML
+  public Button resetButton;
   @FXML
   private RadioButton blockRadioButton;
 
@@ -46,10 +49,10 @@ public class PathfinderController implements Initializable {
 
   @FXML
   void start(ActionEvent event) {
-    if(readyToStart()){
+    if (readyToStart()) {
       errorMsg.setText("");
       System.out.println("insert pathfinding algorithm here");
-    }else{
+    } else {
       errorMsg.setText("you need to set both a start and an end point.");
     }
   }
@@ -65,12 +68,15 @@ public class PathfinderController implements Initializable {
       Color color = (Color) rect.getFill();
       Color selectedTypeColor = getPointType();
       if (color == selectedTypeColor) {
+        removeSelectedPoint(rect);
         rect.setFill((Color) rect.getUserData());
       } else {
         rect.setFill(selectedTypeColor);
         saveSelectedPoint(rect);
       }
     });
+    errorMsg.setWrapText(true);
+    errorMsg.setTextAlignment(TextAlignment.JUSTIFY);
   }
 
   public void setUpGrid(GridPane gp, int length, int height, int row, int column) {
@@ -95,28 +101,53 @@ public class PathfinderController implements Initializable {
   }
 
   public void saveSelectedPoint(Rectangle clickedPoint) {
-    Color clickedPointColor = (Color) clickedPoint.getFill();
+    Color clickedPointColor = getColorFromRectangle(clickedPoint);
     if (clickedPointColor == Color.BLACK) {
       blockPoints.add(clickedPoint);
     }
     if (clickedPointColor == Color.GREEN) {
       try {
         startPoint.setFill(Color.GRAY);
-      } catch (NullPointerException ignored) {}
+      } catch (NullPointerException ignored) {
+      }
       startPoint = clickedPoint;
     }
     if (clickedPointColor == Color.YELLOW) {
       try {
         endPoint.setFill(Color.GRAY);
-      } catch (NullPointerException ignored) {}
+      } catch (NullPointerException ignored) {
+      }
       endPoint = clickedPoint;
     }
   }
 
-  boolean readyToStart(){
-    if (startPoint != null && endPoint!= null){
-      return true;
+  public void removeSelectedPoint(Rectangle clickedPoint) {
+    Color clickedPointColor = getColorFromRectangle(clickedPoint);
+    if (clickedPointColor == Color.BLACK) {
+      blockPoints.remove(clickedPoint);
     }
-    return false;
+    if (clickedPointColor == Color.GREEN) {
+      startPoint.setFill(Color.GRAY);
+      startPoint = null;
+    }
+    if (clickedPointColor == Color.YELLOW) {
+      endPoint.setFill(Color.GRAY);
+      endPoint = null;
+    }
+  }
+
+  private Color getColorFromRectangle(Rectangle rect){
+    return (Color) rect.getFill();
+  }
+
+  boolean readyToStart() {
+    return startPoint != null && endPoint != null;
+  }
+
+  public void reset(ActionEvent actionEvent) {
+    setUpGrid(grid, 600, 600, gridRows, gridCols);
+    startPoint = null;
+    endPoint = null;
+    blockPoints.removeAll(blockPoints);
   }
 }
