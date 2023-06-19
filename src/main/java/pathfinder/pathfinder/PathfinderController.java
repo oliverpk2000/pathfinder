@@ -69,7 +69,7 @@ public class PathfinderController implements Initializable {
       Color selectedTypeColor = getPointType();
       if (color == selectedTypeColor) {
         removeSelectedPoint(rect);
-        rect.setFill((Color) rect.getUserData());
+        rect.setFill(Color.GRAY);
       } else {
         rect.setFill(selectedTypeColor);
         saveSelectedPoint(rect);
@@ -84,7 +84,6 @@ public class PathfinderController implements Initializable {
       for (int j = 0; j < column; j++) {
         Rectangle rectangle = new Rectangle(((double) length / row), ((double) height / column));
         rectangle.setFill(Color.GRAY);
-        rectangle.setUserData(Color.GRAY);
         gp.add(rectangle, i, j);
       }
     }
